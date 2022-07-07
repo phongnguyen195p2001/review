@@ -48,12 +48,14 @@ echo "<br/><b>str_getcsv :</b></br>";
 /**
  * str_getcsv
  */
-$string = 'PHP,Java,Python,Kotlin,Swift';
-$data = str_getcsv($string);
-var_dump($data);
+$res = array_map('str_getcsv', file('data.csv'));
+var_dump($res);
 echo "</br>";
-$data = explode(',',$string);
-var_dump($data);
+$res = fopen("data.csv","r");
+while(! feof($res)) {
+    var_dump(fgetcsv($res));
+}
+fclose($res);
 /**
  *  str_pad
  */
